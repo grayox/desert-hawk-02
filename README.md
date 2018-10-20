@@ -89,7 +89,7 @@
     save as... -orig
     combine reducer from marioplan/src/index.js
 27. src/firebaseService/firebaseService.js
-    delete firebase initialization
+    move firebase initialization to src/store.js
     ```
     // firebase.initializeApp(config);
     // firebase.firestore().settings({ timestampsInSnapshots: true });

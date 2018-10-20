@@ -9,15 +9,13 @@ import 'firebase/firestore';
 class firebaseService {
 
   init() {
-
-
-
     // firebase.initializeApp(config);
     this.db = firebase.database();
+    this.auth = firebase.auth();
+    // move the following to src.store.js; see README.md steps 27-28
     // my add
     // this.firestore = firebase.firestore();
     // end my add
-    this.auth = firebase.auth();
     // begin insert from marioplan/src/config/fbConfig.js
     // firebase.initializeApp(config);
     // firebase.firestore().settings({ timestampsInSnapshots: true });
