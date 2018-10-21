@@ -14,7 +14,7 @@ class firebaseService {
     this.auth = firebase.auth();
     // move the following to src.store.js; see README.md steps 27-28
     // my add
-    // this.firestore = firebase.firestore();
+    this.firestore = firebase.firestore();
     // end my add
     // begin insert from marioplan/src/config/fbConfig.js
     // firebase.initializeApp(config);
@@ -25,7 +25,7 @@ class firebaseService {
     // end modify my add with mariplan insert
   }
 
-  getUserData = (userId) => {
+  getUserData_orig = (userId) => {
     if (!firebase.apps.length) {
       return;
     }
@@ -39,11 +39,44 @@ class firebaseService {
     });
   };
 
-  updateUserData = (user) => {
+  getUserData = userId => {
+    // console.log('userId', userId);
+    // console.log('firebase.apps\n', firebase.apps);
+    if (!firebase.apps.length) {
+      return;
+    }
+
+    const docRef = this.firestore.doc('users/azZBg5YjnyNFfk73nKZGolm9Mmg2');
+      // const docRef = this.firestore.doc(`users/${userId}`);
+
+      docRef.get().then(doc => {
+          if (doc.exists) {
+              console.log("Document data:", doc.data());
+          } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+          }
+      }).catch(error => {
+          console.log("Error getting document:", error);
+      });
+
+  };
+
+  // updateUserData_orig = (user) => {
+  //   if (!firebase.apps.length) {
+  //     return;
+  //   }
+  //   return this.firestore.doc(`users/${user.uid}`)
+  //     .set(user);
+  // };
+
+  updateUserData = user => {
+    console.log('user\n', user);
     if (!firebase.apps.length) {
       return;
     }
     return this.db.ref(`users/${user.uid}`)
+    // return this.firestore.doc(`users/${user.uid}`)
       .set(user);
   };
 
