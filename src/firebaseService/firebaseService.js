@@ -25,41 +25,47 @@ class firebaseService {
     // end modify my add with mariplan insert
   }
 
-  getUserData_orig = (userId) => {
-    if (!firebase.apps.length) {
-      return;
-    }
-    return new Promise((resolve, reject) => {
-      this.db.ref(`users/${userId}`)
-        .once('value')
-        .then((snapshot) => {
-          const user = snapshot.val();
-          resolve(user);
-        });
-    });
-  };
+  // getUserData_orig = (userId) => {
+  //   if (!firebase.apps.length) {
+  //     return;
+  //   }
+  //   return new Promise((resolve, reject) => {
+  //     this.db.ref(`users/${userId}`)
+  //       .once('value')
+  //       .then((snapshot) => {
+  //         const user = snapshot.val();
+  //         resolve(user);
+  //       });
+  //   });
+  // };
 
   getUserData = userId => {
     // console.log('userId', userId);
     // console.log('firebase.apps\n', firebase.apps);
-    if (!firebase.apps.length) {
-      return;
-    }
+    return new Promise((resolve, reject) => {
+      if (!firebase.apps.length) {
+        reject();
+      }
 
-    const docRef = this.firestore.doc('users/azZBg5YjnyNFfk73nKZGolm9Mmg2');
+      // ref: https://firebase.google.com/docs/firestore/query-data/get-data
+      const docRef = this.firestore.doc('users/azZBg5YjnyNFfk73nKZGolm9Mmg2');
       // const docRef = this.firestore.doc(`users/${userId}`);
 
       docRef.get().then(doc => {
-          if (doc.exists) {
-              console.log("Document data:", doc.data());
-          } else {
-              // doc.data() will be undefined in this case
-              console.log("No such document!");
-          }
+        if (doc.exists) {
+          const data = doc.data();
+          console.log("Document data:\n", data);
+          resolve(data);
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+          reject();
+        }
       }).catch(error => {
-          console.log("Error getting document:", error);
+        console.log("Error getting document:\n", error);
+        reject();
       });
-
+    });
   };
 
   // updateUserData_orig = (user) => {
