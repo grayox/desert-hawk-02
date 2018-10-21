@@ -81,8 +81,8 @@ class firebaseService {
     if (!firebase.apps.length) {
       return;
     }
-    return this.db.ref(`users/${user.uid}`)
-    // return this.firestore.doc(`users/${user.uid}`)
+    // return this.db.ref(`users/${user.uid}`)
+    return this.firestore.doc(`users/${user.uid}`)
       .set(user);
   };
 

@@ -107,6 +107,44 @@
     firestore.settings(settings);
     ```
 29. save to Github
+30. src/firebaseService/firebaseService.js
+    `this.firestore = firebase.firestore();`
+    ```
+    getUserData = userId => {
+      return new Promise((resolve, reject) => {
+        if (!firebase.apps.length) {
+          reject();
+        }
+        // ref: https://firebase.google.com/docs/firestore/query-data/get-data
+        const docRef = this.firestore.doc('users/azZBg5YjnyNFfk73nKZGolm9Mmg2');
+        // const docRef = this.firestore.doc(`users/${userId}`);
+        docRef.get().then(doc => {
+          if (doc.exists) {
+            const data = doc.data();
+            console.log("Document data:\n", data);
+            resolve(data);
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+            reject();
+          }
+        }).catch(error => {
+          console.log("Error getting document:\n", error);
+          reject();
+        });
+      });
+    };
+    ```
+    updateUserData = user => {
+      if (!firebase.apps.length) {
+        return;
+      }
+      // return this.db.ref(`users/${user.uid}`)
+      return this.firestore.doc(`users/${user.uid}`)
+        .set(user);
+    };
+    ```
+  31. save to Github
     
 Added packages:
 - [`yarn add react-redux-firebase redux-firestore`](https://youtu.be/gf5bVfVlNUM?t=104)
