@@ -48,8 +48,8 @@ class firebaseService {
       }
 
       // ref: https://firebase.google.com/docs/firestore/query-data/get-data
-      const docRef = this.firestore.doc('users/azZBg5YjnyNFfk73nKZGolm9Mmg2');
-      // const docRef = this.firestore.doc(`users/${userId}`);
+      // const docRef = this.firestore.doc('users/azZBg5YjnyNFfk73nKZGolm9Mmg2');
+      const docRef = this.firestore.doc(`users/${userId}`);
 
       docRef.get().then(doc => {
         if (doc.exists) {
