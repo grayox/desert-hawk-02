@@ -110,8 +110,8 @@
 30. src/firebaseService/firebaseService.js
     `this.firestore = firebase.firestore();`
     ```
-    getUserData = userId => {
-      return new Promise((resolve, reject) => {
+    getUserData = userId =>
+      new Promise((resolve, reject) => {
         if (!firebase.apps.length) {
           reject();
         }
@@ -133,7 +133,6 @@
           reject();
         });
       });
-    };
     ```
     updateUserData = user => {
       if (!firebase.apps.length) {
@@ -145,6 +144,15 @@
     };
     ```
   31. save to Github
+  32. public/assets/images/logos/fuse.svg
+      save as... -orig
+      - sub new branding logo
+  33. src/main/content/login/Login.js
+      save as... -orig
+      a. left: modify intro and tag line
+      b. right: modify form and function to signup using vendors: Google, Twitter, Facebook
+         `import LoginList from 'my-app/components/LoginList';`
+    
     
 Added packages:
 - [`yarn add react-redux-firebase redux-firestore`](https://youtu.be/gf5bVfVlNUM?t=104)

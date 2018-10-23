@@ -39,10 +39,10 @@ class firebaseService {
   //   });
   // };
 
-  getUserData = userId => {
+  getUserData = userId =>
     // console.log('userId', userId);
     // console.log('firebase.apps\n', firebase.apps);
-    return new Promise((resolve, reject) => {
+    new Promise((resolve, reject) => {
       if (!firebase.apps.length) {
         reject();
       }
@@ -66,7 +66,6 @@ class firebaseService {
         reject();
       });
     });
-  };
 
   // updateUserData_orig = (user) => {
   //   if (!firebase.apps.length) {
