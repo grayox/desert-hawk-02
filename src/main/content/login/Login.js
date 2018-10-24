@@ -10,7 +10,8 @@ import { FuseAnimate } from '@fuse';
 // import FirebaseLoginTab from './tabs/FirebaseLoginTab';
 // import Auth0LoginTab from './tabs/Auth0LoginTab';
 
-import LoginList from 'my-app/components/LoginList';
+import LoginProviders from 'my-app/components/LoginProviders';
+import { logoPath, tagLine, desc, } from 'my-app/config/AppConfig.js';
 
 const styles = theme => ({
   root: {
@@ -46,20 +47,25 @@ class Login extends Component {
           className={classNames(classes.intro, "flex flex-col flex-no-grow items-center p-16 text-center md:p-128 md:items-start md:flex-no-shrink md:flex-1 md:text-left")}>
 
           <FuseAnimate animation="transition.expandIn">
-            <img className="w-128 mb-32" src="assets/images/logos/fuse.svg" alt="logo" />
+            <img className="w-128 mb-32" src={logoPath} alt="logo" />
+            {/* <img className="w-128 mb-32" src="assets/images/logos/fuse.svg" alt="logo" /> */}
           </FuseAnimate>
 
           <FuseAnimate animation="transition.slideUpIn" delay={300}>
             <Typography variant="h4" color="inherit" className="font-light">
-              Give leads. Get leads.
+              {tagLine}
+              {/* Give leads. Get leads. */}
             </Typography>
           </FuseAnimate>
 
           <FuseAnimate delay={400}>
             <Typography variant="subtitle1" color="inherit" className="max-w-512 mt-16">
-              Real estate agents, mortgage brokers, insurance agents and financial planners need leads.
-              Referrals are a good way to get them. Swap lets you turn your customers into referrals
-              and get back referrals in exchange.
+              {desc}
+              {/* Elit incididunt aute aliquip sit aliquip aliquip nisi laboris tempor do ullamco deserunt consectetur eiusmod.
+              Aliquip duis esse elit sint cillum. Eu cupidatat nisi eu ex in esse aute fugiat adipisicing ullamco quis labore ipsum.
+              Ad sit qui incididunt et anim enim voluptate officia. Mollit minim sint consequat est velit amet.
+              Mollit incididunt duis qui minim cillum et proident velit ipsum exercitation ex.
+              Fugiat aliquip ipsum consectetur ipsum consequat magna proident anim in ad pariatur. */}
             </Typography>
           </FuseAnimate>
         </div>
@@ -70,7 +76,7 @@ class Login extends Component {
 
             <CardContent className="flex flex-col items-center justify-center p-32 md:p-48 md:pt-128 ">
 
-              <LoginList/>
+              <LoginProviders/>
 
               {/* <Typography variant="h6" className="text-center md:w-full mb-48">LOGIN TO YOUR ACCOUNT</Typography>
 

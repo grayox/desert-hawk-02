@@ -45,7 +45,7 @@ const items = [
 //   return <ListItem button component="a" {...props} />;
 // }
 
-function LoginList(props) {
+function LoginProviders(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
@@ -115,8 +115,8 @@ function LoginList(props) {
   );
 }
 
-LoginList.propTypes = {
+LoginProviders.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(LoginList);
+export default withStyles(styles)(LoginProviders);

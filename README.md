@@ -151,7 +151,7 @@
       save as... -orig
       a. left: modify intro and tag line
       b. right: modify form and function to signup using vendors: Google, Twitter, Facebook
-         `import LoginList from 'my-app/components/LoginList';`
+         `import LoginProviders from 'my-app/components/LoginProviders';`
     
     
 Added packages:
