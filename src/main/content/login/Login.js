@@ -10,11 +10,10 @@ import { FuseAnimate } from '@fuse';
 // import FirebaseLoginTab from './tabs/FirebaseLoginTab';
 // import Auth0LoginTab from './tabs/Auth0LoginTab';
 
+import SlideShow from 'my-app/components/SlideShow';
+
 import LoginProviders from 'my-app/components/LoginProviders';
 import { logoPath, tagLine, desc, } from 'my-app/config/AppConfig.js';
-
-import Button from '@material-ui/core/Button';
-import { faCentercode } from '@fortawesome/free-brands-svg-icons';
 
 const styles = theme => ({
   root: {
@@ -27,11 +26,6 @@ const styles = theme => ({
   card: {
     width: '100%',
     maxWidth: 400
-  },
-
-  button: {
-    margin: theme.spacing.unit,
-    marginTop: theme.spacing.unit * 5,
   },
 });
 
@@ -78,9 +72,9 @@ class Login extends Component {
           </FuseAnimate>
 
           <FuseAnimate animation="transition.slideDownIn">
-            <Button variant="outlined" color="secondary" className={classes.button}>
-              Learn more
-            </Button>
+            <div className="mt-32">
+              <SlideShow/>
+            </div>
           </FuseAnimate>
         </div>
 
