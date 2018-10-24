@@ -156,6 +156,10 @@
     
 Added packages:
 - [`yarn add react-redux-firebase redux-firestore`](https://youtu.be/gf5bVfVlNUM?t=104)
+- [`yarn add @fortawesome/yarn add @fortawesome/react-fontawesome`](https://github.com/FortAwesome/react-fontawesome)
+- [`yarn add @fortawesome/fontawesome-svg-core`](https://github.com/FortAwesome/react-fontawesome)
+- [`yarn add @fortawesome/free-solid-svg-icons`](https://github.com/FortAwesome/react-fontawesome)
+- [`yarn add @fortawesome/free-brands-svg-icons`](https://github.com/FortAwesome/react-fontawesome)
 
 #### update procedure - v01
 Search for: `~@edit@~`

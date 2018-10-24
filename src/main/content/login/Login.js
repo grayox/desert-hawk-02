@@ -37,7 +37,7 @@ class Login extends Component {
 
   render() {
     const { classes } = this.props;
-    const { tabValue } = this.state;
+    // const { tabValue } = this.state;
 
     return (
       <div className={classNames(classes.root, "flex flex-col flex-1 flex-no-shrink p-24 md:flex-row md:p-0")}>
@@ -70,7 +70,7 @@ class Login extends Component {
 
             <CardContent className="flex flex-col items-center justify-center p-32 md:p-48 md:pt-128 ">
 
-              <LoginList />
+              <LoginList/>
 
               {/* <Typography variant="h6" className="text-center md:w-full mb-48">LOGIN TO YOUR ACCOUNT</Typography>
 
