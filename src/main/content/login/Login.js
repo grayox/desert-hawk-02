@@ -13,6 +13,9 @@ import { FuseAnimate } from '@fuse';
 import LoginProviders from 'my-app/components/LoginProviders';
 import { logoPath, tagLine, desc, } from 'my-app/config/AppConfig.js';
 
+import Button from '@material-ui/core/Button';
+import { faCentercode } from '@fortawesome/free-brands-svg-icons';
+
 const styles = theme => ({
   root: {
     background: "url('/assets/images/backgrounds/dark-material-bg.jpg') no-repeat",
@@ -24,7 +27,12 @@ const styles = theme => ({
   card: {
     width: '100%',
     maxWidth: 400
-  }
+  },
+
+  button: {
+    margin: theme.spacing.unit,
+    marginTop: theme.spacing.unit * 5,
+  },
 });
 
 class Login extends Component {
@@ -67,6 +75,12 @@ class Login extends Component {
               Mollit incididunt duis qui minim cillum et proident velit ipsum exercitation ex.
               Fugiat aliquip ipsum consectetur ipsum consequat magna proident anim in ad pariatur. */}
             </Typography>
+          </FuseAnimate>
+
+          <FuseAnimate animation="transition.slideDownIn">
+            <Button variant="outlined" color="secondary" className={classes.button}>
+              Learn more
+            </Button>
           </FuseAnimate>
         </div>
 
