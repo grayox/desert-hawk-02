@@ -41,15 +41,15 @@
     save as... -orig
     modify to read/write from Cloud Firestore instead of Realtime Database
       - consult src/config/fbConfig.js
-      ```
+      ````
         import 'firebase/firestore';
         ...
         firebase.firestore().settings({ timestampsInSnapshots: true });
-      ```
+      ````
 17. src/store.js
     save as... -orig
     modify with code from marioplan/src/index.js
-      ```
+      ````
       import { reduxFirestore, getFirestore } from 'redux-firestore';
       import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
       // import fbConfig from './config/fbConfig'
@@ -58,13 +58,13 @@
       applyMiddleware(thunk.withExtraArgument({getFirebase, getFirestore})),
       reactReduxFirebase(fbConfig, {userProfile: 'users', useFirestoreForProfile: true, attachAuthIsReady: true}),
       reduxFirestore(fbConfig) // redux bindings for firestore
-      ```
+      ````
 18. src/my-app/config/fbConfig.js
     comment out
-    ```
+    ````
     // firebase.initializeApp(config);
     // firebase.firestore().settings({ timestampsInSnapshots: true });
-    ```
+    ````
     already contained in src/firebaseService/firebaseService.js
 19. At this point, init and config should be complete. (Save to Git repository.)
     Now turn to explore actions (and auth actions) as the place to replace firebase (Realtime Database) with firestore (Cloud Firestore).
@@ -90,13 +90,13 @@
     combine reducer from marioplan/src/index.js
 27. src/firebaseService/firebaseService.js
     move firebase initialization to src/store.js
-    ```
+    ````
     // firebase.initializeApp(config);
     // firebase.firestore().settings({ timestampsInSnapshots: true });
-    ```
+    ````
 28. src/store.js
     initialize firebase here
-    ```
+    ````
     firebase.initializeApp(fbConfig) // <- new to v2.*.*
     // firebase.firestore() // <- needed if using firestore
     const firestore = firebase.firestore();
@@ -105,11 +105,11 @@
       timestampsInSnapshots: true
     };
     firestore.settings(settings);
-    ```
+    ````
 29. save to Github
 30. src/firebaseService/firebaseService.js
     `this.firestore = firebase.firestore();`
-    ```
+    ````
     getUserData = userId =>
       new Promise((resolve, reject) => {
         if (!firebase.apps.length) {
@@ -133,7 +133,7 @@
           reject();
         });
       });
-    ```
+    ````
     updateUserData = user => {
       if (!firebase.apps.length) {
         return;
@@ -142,7 +142,7 @@
       return this.firestore.doc(`users/${user.uid}`)
         .set(user);
     };
-    ```
+    ``
   31. save to Github
   32. public/assets/images/logos/fuse.svg
       save as... -orig
@@ -152,7 +152,12 @@
       a. left: modify intro and tag line
       b. right: modify form and function to signup using vendors: Google, Twitter, Facebook
          `import LoginProviders from 'my-app/components/LoginProviders';`
-    
+  34. Add Onboarding
+  35. src/auth/store/actions/login.actions.js
+      save as... -orig
+      add auth providers
+        - https://firebase.google.com/docs/auth/web/google-signin
+          `export function googleAuthProvider() {...`
     
 Added packages:
 - [`yarn add react-redux-firebase redux-firestore`](https://youtu.be/gf5bVfVlNUM?t=104)
@@ -160,6 +165,7 @@ Added packages:
 - [`yarn add @fortawesome/fontawesome-svg-core`](https://github.com/FortAwesome/react-fontawesome)
 - [`yarn add @fortawesome/free-solid-svg-icons`](https://github.com/FortAwesome/react-fontawesome)
 - [`yarn add @fortawesome/free-brands-svg-icons`](https://github.com/FortAwesome/react-fontawesome)
+- [`yarn add nuka-carousel`](https://www.npmjs.com/package/nuka-carousel)
 
 #### update procedure - v01
 Search for: `~@edit@~`

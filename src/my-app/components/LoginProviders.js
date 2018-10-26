@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -12,6 +12,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle, faGooglePlus, faTwitter, faYoutube, } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, } from '@fortawesome/free-solid-svg-icons';
+
+// import firebaseService from 'firebaseService';
+
+import {bindActionCreators} from 'redux';
+import * as Actions from 'auth/store/actions';
+import {withRouter} from 'react-router-dom';
+import connect from 'react-redux/es/connect/connect';
 
 const styles = theme => ({
   root: {
@@ -30,93 +37,55 @@ const items = [
   { label : 'GooglePlus' , icon : faGooglePlus , } ,
 ]
 
-// const items = [
-//   { 
-//     label: 'Login with Google', 
-//     icon: <FontAwesomeIcon className='text-3xl' icon={faTwitter} />
-//   },
-//   {
-//     label: 'label 2', 
-//     icon: <DraftsIcon className='text-3xl' />
-//   }
-// ];
+class LoginProviders extends Component {
 
-// function ListItemLink(props) {
-//   return <ListItem button component="a" {...props} />;
-// }
+  handleClick = () => {
+    // console.log('clicked!');
+    // firebaseService.init();
+    // this.props.loginWithFireBase({username: 'username', password: 'password',});
+    this.props.googleAuthProvider();
+  }
 
-function LoginProviders(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <List component='nav'>
-       {
-         items.map( item => (
-           <ListItem key={item.label} button>
-             <ListItemIcon className='w-24'>
-               <FontAwesomeIcon className='text-4xl' icon={item.icon} />
-             </ListItemIcon>
-             <ListItemText primary={`Login with ${item.label}`} />
-           </ListItem>
-         ))
-       }
-      </List>
-      {/* <List component='nav'>
-       {
-         items.map((item, key) => (
-           <ListItem button>
-             <ListItemIcon>
-               { item.icon }
-             </ListItemIcon>
-             <ListItemText primary={ item.label } />
-           </ListItem>
-         ))
-       }
-      </List> */}
-      {/* <List component="nav">
-        <ListItem button>
-          <ListItemIcon className="container">
-            <FontAwesomeIcon icon={faGoogle} />
-          </ListItemIcon>
-          <ListItemText primary="Login with Google" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon className="container">
-            <FontAwesomeIcon icon={faTwitter} />
-          </ListItemIcon>
-          <ListItemText primary="Login with Twitter" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon className="container">
-            <DraftsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Login with Gmail" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon className="container">
-            <FontAwesomeIcon icon={faFacebook} />
-          </ListItemIcon>
-          <ListItemText primary="Login with Facebook" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon className="container">
-            <FontAwesomeIcon icon={faYoutube} />
-          </ListItemIcon>
-          <ListItemText primary="Login with Youtube" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon className="container">
-            <FontAwesomeIcon icon={faGooglePlus} />
-          </ListItemIcon>
-          <ListItemText primary="Login with Google Plus" />
-        </ListItem>
-      </List> */}
-    </div>
-  );
+  render() {
+    const { handleClick } = this;
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <List component='nav'>
+          {
+            items.map(item => (
+              <ListItem key={item.label} button onClick={handleClick}>
+                <ListItemIcon className='w-24'>
+                  <FontAwesomeIcon className='text-4xl' icon={item.icon} />
+                </ListItemIcon>
+                <ListItemText primary={`Login with ${item.label}`} />
+              </ListItem>
+            ))
+          }
+        </List>
+      </div>
+    );
+  }
+
 }
 
 LoginProviders.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(LoginProviders);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    loginWithFireBase: Actions.loginWithFireBase,
+    googleAuthProvider: Actions.googleAuthProvider,
+  }, dispatch);
+}
+
+function mapStateToProps({ auth }) {
+  return {
+    login: auth.login,
+    user: auth.user
+  }
+}
+
+// export default withStyles(styles)(LoginProviders);
+export default withStyles(styles, {withTheme: true})(withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginProviders)));
