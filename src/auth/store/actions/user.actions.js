@@ -37,6 +37,7 @@ export function setUserDataAuth0(tokenData)
  */
 export function setUserDataFirebase(user, authUser)
 {
+    console.log('setting user data firebase...'); // my add
     if ( user && user.data &&
         user.data.settings &&
         user.data.settings.theme &&

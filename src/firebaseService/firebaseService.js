@@ -4,6 +4,7 @@ import 'firebase/auth';
 import 'firebase/database';
 // begin insert from marioplan/src/config/fbConfig.js
 import 'firebase/firestore';
+import _ from '@lodash';
 // end insert
 
 class firebaseService {
@@ -39,7 +40,9 @@ class firebaseService {
   //   });
   // };
 
-  getUserData = userId =>
+  getUserData = user =>
+  // getUserData = userId =>
+    // console.log('userId', user.uid);
     // console.log('userId', userId);
     // console.log('firebase.apps\n', firebase.apps);
     new Promise((resolve, reject) => {
@@ -49,7 +52,8 @@ class firebaseService {
 
       // ref: https://firebase.google.com/docs/firestore/query-data/get-data
       // const docRef = this.firestore.doc('users/azZBg5YjnyNFfk73nKZGolm9Mmg2');
-      const docRef = this.firestore.doc(`users/${userId}`);
+      // const docRef = this.firestore.doc(`users/${userId}`);
+      const docRef = this.firestore.doc(`users/${user.uid}`);
 
       docRef.get().then(doc => {
         if (doc.exists) {
@@ -59,6 +63,10 @@ class firebaseService {
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
+          // begin my add
+          console.log("Beginning to update user data...");
+          this.updateUserData(user);
+          // end my add
           reject();
         }
       }).catch(error => {
@@ -81,8 +89,19 @@ class firebaseService {
       return;
     }
     // return this.db.ref(`users/${user.uid}`)
-    return this.firestore.doc(`users/${user.uid}`)
-      .set(user);
+    // begin my add
+    const picked = _.pick(user, ['displayName', 'email', 'photoURL',]); // ref: https://stackoverflow.com/a/51551781/1640892
+    return this.firestore.doc(`users/${user.uid}`).set(picked);
+      // ref: https://stackoverflow.com/a/48158848/1640892
+      // .set(user);
+      // .set(Object.assign({}, user));
+      // .set({ ...user});
+      // .set({
+      //   displayName: user.displayName,
+      //   email: user.email,
+      //   photoURL: user.photoURL,
+      // });
+    // end my add
   };
 
   onAuthStateChanged = (callback) => {

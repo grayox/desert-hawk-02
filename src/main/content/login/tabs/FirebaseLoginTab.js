@@ -29,6 +29,7 @@ class FirebaseLoginTab extends Component {
     };
 
     onSubmit = (model) => {
+        // console.log('model\n', model); // {username, password} // my add
         this.props.loginWithFireBase(model);
     };
 
@@ -47,6 +48,7 @@ class FirebaseLoginTab extends Component {
         if ( this.props.user.role !== 'guest' )
         {
             const pathname = this.props.location.state && this.props.location.state.redirectUrl ? this.props.location.state.redirectUrl : '/';
+            console.log('pathname', pathname); // my add
             this.props.history.push({
                 pathname
             });

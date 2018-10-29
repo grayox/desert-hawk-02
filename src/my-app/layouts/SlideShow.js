@@ -82,13 +82,21 @@ class SlideShow extends React.Component {
             </Toolbar>
           </AppBar>
           <Carousel className={classes.carousel} initialWidth="100vw">
-            <img alt="" src="http://placehold.it/1000x400/ffffff/c0392b/&text=Eu aliquip nostrud" />
-            <img alt="" src="http://placehold.it/1000x400/ff0000/ffffff/&text=exercitation tempor duis" />
-            <img alt="" src="http://placehold.it/1000x400/00ff00/ffffff/&text=eu eiusmod dolor deserunt" />
-            <img alt="" src="http://placehold.it/1000x400/0000ff/ffffff/&text=Laborum cupidatat ut" />
-            <img alt="" src="http://placehold.it/1000x400/ffff00/ffffff/&text=consectetur ullamco" />
-            <img alt="" src="http://placehold.it/1000x400/00ffff/ffffff/&text=Tempor culpa sunt aute" />
-            <img alt="" src="http://placehold.it/1000x400/00ffff/ffffff/&text=irure excepteur occaecat ad" />
+            <img alt="" src="http://placehold.it/900x500/ffffff/c0392b/&text=Eu aliquip nostrud" />
+            <img alt="" src="http://placehold.it/900x500/ff0000/ffffff/&text=exercitation tempor duis" />
+            <img alt="" src="http://placehold.it/900x500/00ff00/ffffff/&text=eu eiusmod dolor deserunt" />
+            <img alt="" src="http://placehold.it/900x500/0000ff/ffffff/&text=Laborum cupidatat ut" />
+            <img alt="" src="http://placehold.it/900x500/ffff00/ffffff/&text=consectetur ullamco" />
+            <img alt="" src="http://placehold.it/900x500/00ffff/ffffff/&text=Tempor culpa sunt aute" />
+            <img alt="" src="http://placehold.it/900x500/00ffff/ffffff/&text=irure excepteur occaecat ad" />
+            <img alt="" src="my-app/images/art/sidebar-02.jpg" />
+            <img alt="" src="my-app/images/screenshots/ss01.png" />
+            <img alt="" src="my-app/images/screenshots/ss02.png" />
+            <img alt="" src="my-app/images/screenshots/ss03.png" />
+            <img alt="" src="my-app/images/screenshots/ss04.png" />
+            <img alt="" src="my-app/images/screenshots/ss05.png" />
+            <img alt="" src="my-app/images/screenshots/ss06.png" />
+            <img alt="" src="my-app/images/screenshots/ss07.png" />
           </Carousel>
           {/* <List>
             <ListItem button>

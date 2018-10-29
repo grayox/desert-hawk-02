@@ -83,15 +83,15 @@ export function googleAuthProvider() {
     //   'login_hint': 'user@example.com'
     // });
     // firebaseService.auth && firebaseService.auth().signInWithPopup(provider).
-    firebase.auth().signInWithPopup(provider).
-      then(result => {
+    firebase.auth().signInWithPopup(provider)
+      .then(result => {
         // This gives you a Google Access Token. You can use it to access the Google API.
-        const token = result.credential.accessToken;
+        // const token = result.credential.accessToken;
         // The signed-in user info.
         const user = result.user;
         // ...
         // begin my add
-        console.log('token\n', token);
+        // console.log('token\n', token);
         console.log('user\n', user);
         return dispatch({
           type: LOGIN_SUCCESS,
@@ -99,6 +99,7 @@ export function googleAuthProvider() {
         // end my add
       }).catch(error => {
         // // Handle Errors here.
+        console.warn('error\n', error);
         // const errorCode = error.code;
         // const errorMessage = error.message;
         // // The email of the user's account used.
