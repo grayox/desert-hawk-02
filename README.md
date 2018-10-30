@@ -1,6 +1,6 @@
 - - - - - BEGIN EDITS - - - - -
  
-#### update procedure - v02
+#### update procedure - v02 - v1.2.3
 
  1. `yarn` -- install dependencies
  2. `yarn start`
@@ -158,6 +158,8 @@
       add auth providers
         - https://firebase.google.com/docs/auth/web/google-signin
           `export function googleAuthProvider() {...`
+  36. src/auth/store/reducers/user.reducer.js
+      contains path to avatar image: `'photoURL': 'assets/images/avatars/Velazquez.jpg',`
     
 Added packages:
 - [`yarn add react-redux-firebase redux-firestore`](https://youtu.be/gf5bVfVlNUM?t=104)
@@ -167,7 +169,7 @@ Added packages:
 - [`yarn add @fortawesome/free-brands-svg-icons`](https://github.com/FortAwesome/react-fontawesome)
 - [`yarn add nuka-carousel`](https://www.npmjs.com/package/nuka-carousel)
 
-#### update procedure - v01
+#### update procedure - v01 - v.1.1.5
 Search for: `~@edit@~`
 
 1. /src/fuse-configs/fuseNavigationConfig.js -- duplicate(append: `-orig`); rewrite file

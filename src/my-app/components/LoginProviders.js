@@ -50,9 +50,7 @@ class LoginProviders extends Component {
   componentDidUpdate(prevProps, prevState) {    
     if (this.props.user.role !== 'guest') {
       const pathname = this.props.location.state && this.props.location.state.redirectUrl ? this.props.location.state.redirectUrl : '/';
-      this.props.history.push({
-        pathname
-      });
+      this.props.history.push({pathname});
     }
     return null;
   }
