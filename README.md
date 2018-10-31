@@ -160,6 +160,14 @@
           `export function googleAuthProvider() {...`
   36. src/auth/store/reducers/user.reducer.js
       contains path to avatar image: `'photoURL': 'assets/images/avatars/Velazquez.jpg',`
+  37. list of auth files
+      - src/auth/Auth.js
+      - src/firebaseService/firebaseService.js
+      - src/auth/store/actions/login.actions.js
+      - src/auth/store/actions/user.actions.js
+      - src/main/content/login/tabs/FirebaseLoginTab.js
+      - src/main/content/login/Login.js
+      - src/my-app/components/LoginProviders.js
     
 Added packages:
 - [`yarn add react-redux-firebase redux-firestore`](https://youtu.be/gf5bVfVlNUM?t=104)

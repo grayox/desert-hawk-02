@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
-import { Link, withRouter } from 'react-router-dom';
-// import { withRouter } from 'react-router-dom';
+// import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles/index';
-import { Card, CardContent, Typography, Icon, Tabs, Tab } from '@material-ui/core';
-// import { Card, CardContent, Typography, } from '@material-ui/core';
+// import { Card, CardContent, Typography, Icon, Tabs, Tab } from '@material-ui/core';
+import { Card, CardContent, Typography, } from '@material-ui/core';
 import classNames from 'classnames';
 import { FuseAnimate } from '@fuse';
-import RegularLoginTab from './tabs/RegularLoginTab';
-import FirebaseLoginTab from './tabs/FirebaseLoginTab';
-import Auth0LoginTab from './tabs/Auth0LoginTab';
+// import RegularLoginTab from './tabs/RegularLoginTab';
+// import FirebaseLoginTab from './tabs/FirebaseLoginTab';
+// import Auth0LoginTab from './tabs/Auth0LoginTab';
 
 import SlideShow from 'my-app/layouts/SlideShow';
 
-// import LoginProviders from 'my-app/components/LoginProviders';
+import LoginProviders from 'my-app/components/LoginProviders';
 import { logoPath, tagLine, desc, } from 'my-app/config/AppConfig.js';
 
 const styles = theme => ({
@@ -40,7 +40,7 @@ class Login extends Component {
 
   render() {
     const { classes } = this.props;
-    const { tabValue } = this.state;
+    // const { tabValue } = this.state;
 
     return (
       <div className={classNames(classes.root, "flex flex-col flex-1 flex-no-shrink p-24 md:flex-row md:p-0")}>
@@ -84,9 +84,9 @@ class Login extends Component {
 
             <CardContent className="flex flex-col items-center justify-center p-32 md:p-48 md:pt-128 ">
 
-              {/* <LoginProviders/> */}
+              <LoginProviders/>
 
-              <Typography variant="h6" className="text-center md:w-full mb-48">LOGIN TO YOUR ACCOUNT</Typography>
+              {/* <Typography variant="h6" className="text-center md:w-full mb-48">LOGIN TO YOUR ACCOUNT</Typography>
 
               <Tabs
                 value={tabValue}
@@ -119,7 +119,7 @@ class Login extends Component {
                 <span className="font-medium">Don't have an account?</span>
                 <Link className="font-medium" to="/register">Create an account</Link>
                 <Link className="font-medium mt-8" to="/">Back to Dashboard</Link>
-              </div>
+              </div> */}
 
             </CardContent>
           </Card>
