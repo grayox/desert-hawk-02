@@ -19,6 +19,7 @@ import {bindActionCreators} from 'redux';
 import * as Actions from 'auth/store/actions';
 import {withRouter} from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
+import { Typography } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
@@ -61,6 +62,7 @@ class LoginProviders extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
+        <Typography className='ml-24 mb-8 text-small font-light opacity-75 uppercase'>Login with</Typography>
         <List component='nav'>
           {
             items.map(item => (
@@ -68,7 +70,7 @@ class LoginProviders extends Component {
                 <ListItemIcon className='w-24'>
                   <FontAwesomeIcon className='text-4xl' icon={item.icon} />
                 </ListItemIcon>
-                <ListItemText primary={`Login with ${item.label}`} />
+                <ListItemText primary={item.label} />
               </ListItem>
             ))
           }
