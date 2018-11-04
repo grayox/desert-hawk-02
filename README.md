@@ -165,10 +165,59 @@
       - src/firebaseService/firebaseService.js
       - src/auth/store/actions/login.actions.js
       - src/auth/store/actions/user.actions.js
+      - src/auth/store/reducers/user.reducer.js
       - src/main/content/login/tabs/FirebaseLoginTab.js
       - src/main/content/login/Login.js
       - src/my-app/components/LoginProviders.js
-    
+  38. src/store.js
+      Track state
+      ```
+      // begin my add
+      // 1. These links describe how to access the global state object
+      //    https://egghead.io/lessons/react-redux-store-methods-getstate-dispatch-and-subscribe
+      //    https://stackoverflow.com/questions/38332912/how-do-i-access-store-state-in-react-redux
+      //    This code implements the above links
+      store.subscribe( () => {
+        console.log('state\n', store.getState());
+        debugger;
+      });
+      // 2. To copy the state object from the console to the clipboard, follow these steps:
+      //    a. Right-click an object in Chrome's console and select Store as Global Variable from the context menu. It       will return something like temp1 as the variable name.
+      //    b. Chrome also has a copy() method, so copy(temp1) in the console should copy that object to your clipboard.
+      //    ref: https://stackoverflow.com/a/25140576
+      //    ref: https://scottwhittaker.net/chrome-devtools/2016/02/29/chrome-devtools-copy-object.html
+      // 3. You can view the object in a json viewer like this one: http://jsonviewer.stack.hu/
+      // 4. You can compare two json objects here: http://www.jsondiff.com/
+      // end my add
+      ```
+  39. src/main/content/apps/dashboards/analytics/AnalyticsDashboardApp.js
+      save as... -orig
+      route guard against not logged in users
+      ref: https://www.youtube.com/watch?v=xY_27UI2W5U
+  40. src/main/content/login/Login.js
+      route guard against logged in users
+      ref: https://www.youtube.com/watch?v=xY_27UI2W5U
+  41. src/@fuse/components/FuseAnimate/FuseAnimate.js
+      add `<ErrorBoundary>` from my-app/containers/ErrorBoundary.js
+      delete `<ErrorBoundary>`; doesn't catch error in that component; need to add it next level up in tree;
+      add conditional before style
+      delete
+        ```
+        // begin my add
+        const ready = props && props.children;
+        if(!ready) {
+          console.error('props\n', props);
+          return (
+            <ErrorBoundary>
+              {children}
+            </ErrorBoundary>
+          );
+        }
+        // end my add
+        ```
+      uncomment all children of `<FuseAnimate>{children}</FuseAnimate>`
+      note this nets NO CHANGE to this element!
+
 Added packages:
 - [`yarn add react-redux-firebase redux-firestore`](https://youtu.be/gf5bVfVlNUM?t=104)
 - [`yarn add @fortawesome/yarn add @fortawesome/react-fontawesome`](https://github.com/FortAwesome/react-fontawesome)

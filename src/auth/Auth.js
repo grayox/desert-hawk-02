@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import * as userActions from 'auth/store/actions';
 import { bindActionCreators } from 'redux';
 import * as Actions from 'store/actions';
-import * as AuthActions from 'auth/store/actions'; // my add
 import firebaseService from 'firebaseService';
 
 class Auth extends Component {
@@ -17,16 +16,13 @@ class Auth extends Component {
   firebaseCheck = () => {
     firebaseService.onAuthStateChanged(authUser => {
       if (authUser) {
-        // begin my add
-        console.log('authUser\n', authUser);
-        this.props.loginWithFireBase({ username: 'username', password: 'password' });
-        // end my add
-        this.props.showMessage({ message: 'Logging in with Firebase' });
+        console.log('authUser\n', authUser); // my add
+        this.props.showMessage({ message: 'Logging in' });
         // Retrieve user data from Firebase
         firebaseService.getUserData(authUser/*.uid*/)
           .then(user => {
             this.props.setUserDataFirebase(user, authUser);
-            this.props.showMessage({ message: 'Logged in with Firebase' });
+            this.props.showMessage({ message: 'Logged in' });
           })
           // begin my add
           .catch(error => {
@@ -51,7 +47,6 @@ function mapDispatchToProps(dispatch) {
     setUserDataFirebase: userActions.setUserDataFirebase,
     showMessage: Actions.showMessage,
     hideMessage: Actions.hideMessage,
-    loginWithFireBase: AuthActions.loginWithFireBase, // my add
   },
     dispatch);
 }

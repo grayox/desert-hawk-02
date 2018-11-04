@@ -3,10 +3,12 @@ import * as Actions from '../actions';
 const initialState = {
     role: 'guest',
     data: {
-        'displayName': 'John Doe',
-        //'photoURL'   : 'assets/images/avatars/Velazquez.jpg',
-        'email'      : 'johndoe@withinpixels.com',
-        shortcuts    : [
+        displayName : 'John Doe',
+        // photoURL    : 'assets/images/avatars/Velazquez.jpg',
+        // photoURL    : 'https://plus.google.com/u/0/photos/106065062175868017862/albums/profile/6418665536878174482',
+        photoURL    : 'https://randomuser.me/api/portraits/thumb/women/3.jpg',
+        email       : 'johndoe@withinpixels.com',
+        shortcuts   : [
             'calendar',
             'mail',
             'contacts',
@@ -16,6 +18,9 @@ const initialState = {
 };
 
 const user = function (state = initialState, action) {
+    console.log('state\n', state);
+    console.log('action\n', action);
+    // debugger;
     switch ( action.type )
     {
         case Actions.SET_USER_DATA:

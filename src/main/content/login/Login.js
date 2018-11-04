@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 // import { Link, withRouter } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+// import {withRouter} from 'react-router-dom';
+// begin my add
+import {withRouter, Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
+// end my add
 import { withStyles } from '@material-ui/core/styles/index';
 // import { Card, CardContent, Typography, Icon, Tabs, Tab } from '@material-ui/core';
 import { Card, CardContent, Typography, } from '@material-ui/core';
@@ -39,9 +43,10 @@ class Login extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, user } = this.props;
     // const { tabValue } = this.state;
-
+ 
+    if(user.uid) return <Redirect to='/' />
     return (
       <div className={classNames(classes.root, "flex flex-col flex-1 flex-no-shrink p-24 md:flex-row md:p-0")}>
 
@@ -129,4 +134,13 @@ class Login extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(withRouter(Login));
+// begin my add
+function mapStateToProps({ auth: { user } }) {
+  return {
+    user
+  }
+}
+// end my add
+
+// export default withStyles(styles, { withTheme: true })(withRouter(Login));
+export default withStyles(styles, {withTheme: true})(withRouter(connect(mapStateToProps, null)(Login))); // my add

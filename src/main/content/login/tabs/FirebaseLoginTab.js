@@ -48,10 +48,13 @@ class FirebaseLoginTab extends Component {
         if ( this.props.user.role !== 'guest' )
         {
             const pathname = this.props.location.state && this.props.location.state.redirectUrl ? this.props.location.state.redirectUrl : '/';
-            console.log('pathname', pathname); // my add
             this.props.history.push({
-                pathname
+              pathname
             });
+            // begin my add
+            console.log('pathname', pathname);
+            // debugger;
+            // end my add
         }
         return null;
     }

@@ -11,9 +11,8 @@ const FuseAnimate = (props) => {
         }
     });
     return (
-        <VelocityComponent {...props} children={children}/>
+        <VelocityComponent {...props} children={children} />
     )
-
 };
 
 FuseAnimate.propTypes = {

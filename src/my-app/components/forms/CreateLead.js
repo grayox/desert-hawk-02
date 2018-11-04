@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import { connect } from 'react-redux'
 import { createLead } from '../../../store/actions/my-actions'
-// import { createLead } from 'src/store/actions/my-actions'
+// import { createLead } from 'store/actions/my-actions'
 
 class CreateLead extends Component {
   state = {

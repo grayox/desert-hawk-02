@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import {connect} from 'react-redux';
-// import {withRouter} from 'react-router-dom';
-import {withRouter, Redirect} from 'react-router-dom'; // my add
+import {withRouter} from 'react-router-dom'
 import * as Actions from './store/actions'
 import {bindActionCreators} from 'redux';
 import {Typography} from '@material-ui/core';
@@ -97,12 +96,11 @@ class AnalyticsDashboardApp extends Component {
 
     render()
     {
-        const {widgets, classes, user} = this.props;
+        const {widgets, classes} = this.props;
         if ( !widgets )
         {
             return 'Loading..';
         }
-        if(!user.uid) return <Redirect to='/login' />
         return (
             <div className={classes.root}>
 
@@ -208,11 +206,11 @@ function mapDispatchToProps(dispatch)
     }, dispatch);
 }
 
-function mapStateToProps({ auth: { user }, analyticsDashboardApp }) {
-  return {
-    user, // my add
-    widgets: analyticsDashboardApp.widgets.data
-  }
+function mapStateToProps({analyticsDashboardApp})
+{
+    return {
+        widgets: analyticsDashboardApp.widgets.data
+    }
 }
 
 export default withReducer('analyticsDashboardApp', reducer)(withStyles(styles, {withTheme: true})(withRouter(connect(mapStateToProps, mapDispatchToProps)(AnalyticsDashboardApp))));

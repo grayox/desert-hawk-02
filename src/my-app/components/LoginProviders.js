@@ -47,15 +47,15 @@ class LoginProviders extends Component {
     this.props.googleAuthProvider();
   }
 
-  // begin copypaste from FirebaseLoginTab.js
-  componentDidUpdate(prevProps, prevState) {    
-    if (this.props.user.role !== 'guest') {
-      const pathname = this.props.location.state && this.props.location.state.redirectUrl ? this.props.location.state.redirectUrl : '/';
-      this.props.history.push({pathname});
-    }
-    return null;
-  }
-  // end copypaste from FirebaseLoginTab.js
+  // // begin copypaste from FirebaseLoginTab.js
+  // componentDidUpdate(prevProps, prevState) {    
+  //   // if (this.props.user.role !== 'guest') {
+  //     const pathname = this.props.location.state && this.props.location.state.redirectUrl ? this.props.location.state.redirectUrl : '/';
+  //     this.props.history.push({pathname});
+  //   // }
+  //   // return null;
+  // }
+  // // end copypaste from FirebaseLoginTab.js
 
   render() {
     const { handleClick } = this;

@@ -91,7 +91,10 @@ class firebaseService {
     // return this.db.ref(`users/${user.uid}`)
     // begin my add
     const picked = _.pick(user, ['displayName', 'email', 'photoURL',]); // ref: https://stackoverflow.com/a/51551781/1640892
-    return this.firestore.doc(`users/${user.uid}`).set(picked);
+    // const picked = _.pick(user, ['displayName', 'email',]); // ref: https://stackoverflow.com/a/51551781/1640892
+    return this.firestore
+      .doc(`users/${user.uid}`)
+      .set(picked);
       // ref: https://stackoverflow.com/a/48158848/1640892
       // .set(user);
       // .set(Object.assign({}, user));
@@ -108,6 +111,8 @@ class firebaseService {
     if (!this.auth) {
       return;
     }
+    console.log('auth\n', this.auth);
+    // debugger;
     this.auth.onAuthStateChanged(callback);
   };
 

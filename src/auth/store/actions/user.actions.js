@@ -91,6 +91,8 @@ export function createUserSettingsFirebase(authUser)
  */
 export function setUserData(user)
 {
+    console.log('user\n', user);
+    // debugger;
     return (dispatch) => {
 
         /*
@@ -113,6 +115,7 @@ export function setUserData(user)
  */
 export function updateUserSettings(settings)
 {
+    console.log('settings\n', settings); // my add
     return (dispatch, getState) => {
         const oldUser = getState().auth.user;
         const user = _.merge({}, oldUser, {data: {settings}});
