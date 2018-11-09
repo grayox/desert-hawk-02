@@ -80,7 +80,6 @@ export function createUserSettingsFirebase(authUser)
             }
         );
         currentUser.updateProfile(user.data);
-
         updateUserData(user);
         return dispatch(setUserData(user));
     }

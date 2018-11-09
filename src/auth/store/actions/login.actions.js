@@ -18,7 +18,7 @@ export function submitLogin({ email, password }) {
       if (!response.data.error) {
         dispatch(setUserData(response.data));
         return dispatch({
-          type: LOGIN_SUCCESS
+          type: LOGIN_SUCCESS,
         });
       }
       else {
@@ -95,6 +95,7 @@ export function googleAuthProvider() {
         console.log('user\n', user);
         return dispatch({
           type: LOGIN_SUCCESS,
+          payload: user, // my add
         });
         // end my add
       }).catch(error => {

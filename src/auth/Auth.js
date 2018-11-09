@@ -17,10 +17,12 @@ class Auth extends Component {
     firebaseService.onAuthStateChanged(authUser => {
       if (authUser) {
         console.log('authUser\n', authUser); // my add
+        // debugger;
         this.props.showMessage({ message: 'Logging in' });
         // Retrieve user data from Firebase
         firebaseService.getUserData(authUser/*.uid*/)
           .then(user => {
+            // debugger;
             this.props.setUserDataFirebase(user, authUser);
             this.props.showMessage({ message: 'Logged in' });
           })

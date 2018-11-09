@@ -1,12 +1,12 @@
 import * as Actions from '../actions';
 
 const initialState = {
-    role: 'guest',
+    // role: 'guest',
     data: {
         displayName : 'John Doe',
         // photoURL    : 'assets/images/avatars/Velazquez.jpg',
-        // photoURL    : 'https://plus.google.com/u/0/photos/106065062175868017862/albums/profile/6418665536878174482',
         photoURL    : 'https://randomuser.me/api/portraits/thumb/women/3.jpg',
+        // photoURL    : 'https://lh5.googleusercontent.com/-B8JLjDILt9k/AAAAAAAAAAI/AAAAAAAAABc/G75SvMbyb0k/photo.jpg',
         email       : 'johndoe@withinpixels.com',
         shortcuts   : [
             'calendar',

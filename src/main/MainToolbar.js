@@ -10,6 +10,8 @@ import {bindActionCreators} from 'redux';
 import {FuseShortcuts, FuseAnimate} from '@fuse';
 import {Link} from 'react-router-dom';
 
+import ErrorBoundary from 'my-app/containers/ErrorBoundary' // my add
+
 const styles = theme => ({
     root     : {
         display   : 'flex',
@@ -50,6 +52,7 @@ class MainToolbar extends Component {
 
                 <div className="flex">
                     <FuseAnimate delay={300}>
+                      <ErrorBoundary>
                         <Button className="h-64" onClick={this.userMenuClick}>
                             {user.data.photoURL ?
                                 (
@@ -74,6 +77,7 @@ class MainToolbar extends Component {
 
                             <Icon className="text-16 ml-12 hidden sm:flex" variant="action">keyboard_arrow_down</Icon>
                         </Button>
+                      </ErrorBoundary>
                     </FuseAnimate>
 
                     <Popover

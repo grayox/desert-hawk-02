@@ -40,7 +40,7 @@ class ErrorBoundary extends Component {
     //   // return <div>⚠️</div>;
     //   return
     //   <details>
-    //     <summary>⚠️</summary>
+    //     <summary><span role="img" aria-label="warning emoji">⚠️</span></summary>
     //     <p> - by Refsnes Data. All Rights Reserved.</p>
     //     <p>All content and graphics on this web site are the property of the company Refsnes Data.</p>
     //   </details>
@@ -53,7 +53,11 @@ class ErrorBoundary extends Component {
         <div>
           {/* <h2>Something went wrong.</h2> */}
           <details style={{ whiteSpace: 'pre-wrap' }}>
-            <summary>⚠️</summary>
+            <summary>
+              <span role="img" aria-label="warning emoji">
+                ⚠️
+              </span>
+            </summary>
             {error && error.toString()}
             <br />
             {errorInfo.componentStack}

@@ -1,5 +1,5 @@
 import * as reduxModule from 'redux';
-import {applyMiddleware, compose, createStore} from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 import createReducer from 'store/reducers';
 import thunk from 'redux-thunk';
 
@@ -37,27 +37,27 @@ https://github.com/zalmoxisus/redux-devtools-instrument/pull/19#issuecomment-400
 reduxModule.__DO_NOT_USE__ActionTypes.REPLACE = '@@redux/INIT';
 
 const composeEnhancers =
-    process.env.NODE_ENV !== 'production' &&
+  process.env.NODE_ENV !== 'production' &&
     typeof window === 'object' &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-            // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-        }) : compose;
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+      // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+    }) : compose;
 
 const enhancer = composeEnhancers(
-    // applyMiddleware(thunk)
-    // begin insert from marioplan
-    applyMiddleware(thunk.withExtraArgument({getFirebase, getFirestore})),
-    // reactReduxFirebase(fbConfig, {userProfile: 'users', useFirestoreForProfile: true, attachAuthIsReady: true}),
-    // reduxFirestore(fbConfig) // redux bindings for firestore
-    // end insert from marioplan
+  // applyMiddleware(thunk)
+  // begin insert from marioplan
+  applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
+  // reactReduxFirebase(fbConfig, {userProfile: 'users', useFirestoreForProfile: true, attachAuthIsReady: true}),
+  // reduxFirestore(fbConfig) // redux bindings for firestore
+  // end insert from marioplan
 
-    // begin insert from react-redux-firebase
-    // http://react-redux-firebase.com/docs/v2-migration-guide.html
-    reactReduxFirebase(firebase, rrfConfig), // pass in firebase instance instead of config
-    reduxFirestore(firebase) // <- needed if using firestore
-    // applyMiddleware(...middleware) // to add other middleware
-    // end insert from react-redux-firebase
+  // begin insert from react-redux-firebase
+  // http://react-redux-firebase.com/docs/v2-migration-guide.html
+  reactReduxFirebase(firebase, rrfConfig), // pass in firebase instance instead of config
+  reduxFirestore(firebase) // <- needed if using firestore
+  // applyMiddleware(...middleware) // to add other middleware
+  // end insert from react-redux-firebase
 );
 
 const store = createStore(createReducer(), enhancer);
@@ -73,7 +73,7 @@ store.asyncReducers = {};
 //    https://egghead.io/lessons/react-redux-store-methods-getstate-dispatch-and-subscribe
 //    https://stackoverflow.com/questions/38332912/how-do-i-access-store-state-in-react-redux
 //    This code implements the above links
-store.subscribe( () => {
+store.subscribe(() => {
   console.log('state\n', store.getState());
   // debugger;
 });
@@ -87,13 +87,12 @@ store.subscribe( () => {
 // end my add
 
 export const injectReducer = (key, reducer) => {
-    if ( store.asyncReducers[key] )
-    {
-        return;
-    }
-    store.asyncReducers[key] = reducer;
-    store.replaceReducer(createReducer(store.asyncReducers));
-    return store;
+  if (store.asyncReducers[key]) {
+    return;
+  }
+  store.asyncReducers[key] = reducer;
+  store.replaceReducer(createReducer(store.asyncReducers));
+  return store;
 };
 
 export default store;

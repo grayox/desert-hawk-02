@@ -4,7 +4,7 @@ import 'firebase/auth';
 import 'firebase/database';
 // begin insert from marioplan/src/config/fbConfig.js
 import 'firebase/firestore';
-import _ from '@lodash';
+// import _ from '@lodash';
 // end insert
 
 class firebaseService {
@@ -40,6 +40,10 @@ class firebaseService {
   //   });
   // };
 
+  userRef = ({ uid }) => this.firestore //.doc(`users/${user.uid}`);
+    .collection('users')
+    .doc(uid);
+
   getUserData = user =>
   // getUserData = userId =>
     // console.log('userId', user.uid);
@@ -53,26 +57,39 @@ class firebaseService {
       // ref: https://firebase.google.com/docs/firestore/query-data/get-data
       // const docRef = this.firestore.doc('users/azZBg5YjnyNFfk73nKZGolm9Mmg2');
       // const docRef = this.firestore.doc(`users/${userId}`);
-      const docRef = this.firestore.doc(`users/${user.uid}`);
+      // const docRef = this.firestore //.doc(`users/${user.uid}`);
+      //   .collection('users')
+      //   .doc(user.uid);
 
-      docRef.get().then(doc => {
-        if (doc.exists) {
-          const data = doc.data();
-          console.log("Document data:\n", data);
-          resolve(data);
-        } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-          // begin my add
-          console.log("Beginning to update user data...");
+      // docRef.get().then(doc => {
+      this.userRef(user)
+        .get()
+        .then(doc => {
+          if (doc.exists) {
+            const data = doc.data();
+            console.log('Document data:\n', data);
+            // debugger;
+            resolve(data);
+          } else {
+            // doc.data() will be undefined in this case
+            console.log('No such document!');
+            // begin my add
+            console.log('Beginning to update user data...');
+            console.log('user\n', user);
+            // debugger;
+            // this.updateUserData(user);
+            // this.updateUserData(user);
+            resolve(user);
+            // end my add
+            // reject();
+          }
+        }).catch(error => {
+          console.log('Error getting document:\n', error);
+          console.log('user\n', user);
+          // debugger;
           this.updateUserData(user);
-          // end my add
           reject();
-        }
-      }).catch(error => {
-        console.log("Error getting document:\n", error);
-        reject();
-      });
+        });
     });
 
   // updateUserData_orig = (user) => {
@@ -84,17 +101,35 @@ class firebaseService {
   // };
 
   updateUserData = user => {
-    console.log('user\n', user);
+    // console.log('user\n', user);
+    // debugger;
     if (!firebase.apps.length) {
       return;
     }
     // return this.db.ref(`users/${user.uid}`)
     // begin my add
-    const picked = _.pick(user, ['displayName', 'email', 'photoURL',]); // ref: https://stackoverflow.com/a/51551781/1640892
-    // const picked = _.pick(user, ['displayName', 'email',]); // ref: https://stackoverflow.com/a/51551781/1640892
-    return this.firestore
-      .doc(`users/${user.uid}`)
-      .set(picked);
+    const { auth } = this;
+    const timestamp = Date.now();
+    return this.userRef(auth)
+      .set({...auth, timestamp});
+
+    // // maybe we have no reason to pick fields and should just save the entire authuser object
+    // // ref: https://stackoverflow.com/a/51551781/1640892
+    // const picked = _.pick(user, [
+    //   'uid', 'displayName', 'photoURL', 'email', 'emailVerified', 'phoneNumber', 'isAnonymous', 'providerData',
+    // ]);
+    // // const picked = _.pick(user, ['displayName', 'email',]); // ref: https://stackoverflow.com/a/51551781/1640892
+    // // console.log('picked\n', picked);
+    // const photoURLTemp = picked && picked.providerData && picked.providerData[0] && picked.providerData[0].photoURL;
+    // // console.log('photoURLTemp\n', photoURLTemp);
+    // const photoURL = photoURLTemp || null;
+    // return this.userRef(user)
+    //   .set({...picked, timestamp, photoURL, });
+    //   // .set(user);
+
+    // return this.firestore //.doc(`users/${user.uid}`);
+    //   .collection('users')
+    //   .doc(user.uid)
       // ref: https://stackoverflow.com/a/48158848/1640892
       // .set(user);
       // .set(Object.assign({}, user));
@@ -130,10 +165,10 @@ class firebaseService {
     // console.info('submitting...', model);  
     collectionRef.add(data)
       .then(docRef => {
-        console.log("Document written with ID: ", docRef.id);
+        console.log('Document written with ID: ', docRef.id);
       })
       .catch(error => {
-        console.error("Error adding document: ", error);
+        console.error('Error adding document: ', error);
       });
     // console.info('submitted: ', model);
   }
