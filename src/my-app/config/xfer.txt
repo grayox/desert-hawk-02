@@ -1,0 +1,6 @@
+src/auth/Auth.js
+src/auth/store/reducers/user.reducer.js
+src/firebaseService/firebaseServiceConfig.js
+src/firebaseService/firebaseService.js
+src/index.js
+src/store.js
